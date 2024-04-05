@@ -46,9 +46,13 @@ export default defineConfig({
             '^/train': {
                 target,
                 secure: false
+            },
+            '^/autoCompleteStation': {
+                target,
+                secure: false
             }
         },
-        port: 5173,
+        port: 443,
         https: {
             key: fs.readFileSync(keyFilePath),
             cert: fs.readFileSync(certFilePath),

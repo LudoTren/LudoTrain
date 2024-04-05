@@ -27,6 +27,11 @@ app.MapGet("train", (string codice) =>
     try {  return Newtonsoft.Json.JsonConvert.SerializeObject(GestioneTreno.RicercaTreno(codice)); } catch {  return null; }
 
 });
+app.MapGet("autoCompleteStation", (string? stazione) =>
+{
+    try { return Newtonsoft.Json.JsonConvert.SerializeObject(GestioneTreno.AutoCompletamentoStazione(stazione)); } catch { return null; }
+
+});
 
 
 
