@@ -12,19 +12,23 @@
                         <th>Ritardo</th>
                         <th>Arrivo</th>
                         <th>Partenza</th>
+                        <th>Arrivo Reale</th>
+                        <th>Partenza Reale</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="forecast in post" :key="forecast.id">
-                        <td>{{forecast.stazione }}</td>
-                        <td>{{forecast.ritardo }}</td>
-                        <td>{{forecast.arrivo_Teorico }}</td>
-                        <td>{{forecast.partenza_Teorica }}</td>
+                    <tr v-for="forecast in post.Fermate" :key="forecast.id">
+                        <td>{{forecast.Stazione }}</td>
+                        <td>{{forecast.Ritardo }}</td>
+                        <td>{{forecast.Arrivo_Teorico }}</td>
+                        <td>{{forecast.Partenza_Teorica }}</td>
+                        <td>{{forecast.ArrivoReale }}</td>
+                        <td>{{forecast.PartenzaReale }}</td>
 
-                        
                     </tr>
                 </tbody>
             </table>
+            <p> Ultimo Rilevamento: {{post.StazioneUltimoRilevamento}} {{post.OraUltimoRilevamento}}  {{post.RitardoUltimoRilevamento}}</p>
         </div>
     </div>
     
@@ -54,7 +58,7 @@
                 this.post = null;
                 this.loading = true;
 
-                fetch('/train?codice='+codice)
+                fetch('train?codice='+codice)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -91,9 +95,8 @@ th, td {
     padding-left: .5rem;
     padding-right: .5rem;
 }
-
-.weather-component {
-    text-align: center;
+.content{
+    text-align: left;
 }
 
 table {

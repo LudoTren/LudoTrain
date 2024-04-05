@@ -22,9 +22,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.MapGet("/train", (string codice) =>
+app.MapGet("train", (string codice) =>
 {
-    try { return GestioneTreno.RicercaTreno(codice).Fermate.ToArray(); } catch {  return null; }
+    try {  return Newtonsoft.Json.JsonConvert.SerializeObject(GestioneTreno.RicercaTreno(codice)); } catch {  return null; }
 
 });
 

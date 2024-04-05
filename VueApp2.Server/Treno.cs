@@ -9,6 +9,9 @@
         public string Provvedimenti { get { return provvedimenti; } set { if (value == null) provvedimenti = string.Empty; else provvedimenti = value; } }
         public long Programmata { get; set; }
         public int Ritardo { get; set; }
+        
+
+
         private DateTime partenza;
         public string? Partenza_Teorica 
         {
@@ -20,7 +23,7 @@
             {
                 if(value!=null)
                 {
-                    partenza = new DateTime(1970, 1, 1, 0, 0, 0).AddMilliseconds(double.Parse(value));
+                    partenza = new DateTime(1970, 1, 1, 0, 0, 0).AddMilliseconds(double.Parse(value)).ToLocalTime();
                 }
             }
         }
@@ -35,12 +38,40 @@
             {
                 if (value != null)
                 {
-                    arrivo = new DateTime(1970, 1, 1, 0, 0, 0).AddMilliseconds(double.Parse(value));
+                    arrivo = new DateTime(1970, 1, 1, 0, 0, 0).AddMilliseconds(double.Parse(value)).ToLocalTime();
                 }
             }
         }
-        public object PartenzaReale { get; set; }
-        public object ArrivoReale { get; set; }
+        private DateTime partenzaReale;
+        public string? PartenzaReale
+        {
+            get
+            {
+                return partenzaReale.ToShortTimeString();
+            }
+            set
+            {
+                if (value != null)
+                {
+                    partenzaReale = new DateTime(1970, 1, 1, 0, 0, 0).AddMilliseconds(double.Parse(value)).ToLocalTime();
+                }
+            }
+        }
+        private DateTime arrivoReale;
+        public string? ArrivoReale
+        {
+            get
+            {
+                return arrivoReale.ToShortTimeString();
+            }
+            set
+            {
+                if (value != null)
+                {
+                    arrivoReale = new DateTime(1970, 1, 1, 0, 0, 0).AddMilliseconds(double.Parse(value)).ToLocalTime();
+                }
+            }
+        }
         public int RitardoPartenza { get; set; }
         public int RitardoArrivo { get; set; }
     }
@@ -50,8 +81,30 @@
         public string NumeroTreno { get; set; }
         public string OrigineZero { get; set; }
         public string DestinazioneZero { get; set; }
+        public string? StazioneUltimoRilevamento { get; set; }
+
+        private DateTime oraRilevamento;
+
+        public string RitardoUltimoRilevamento { get { return CompRitardo[0]; } }
+        public string[] CompRitardo { get; set; }
+        public string? OraUltimoRilevamento
+        {
+            get
+            {
+                return oraRilevamento.ToShortTimeString();
+            }
+            set
+            {
+                if (value != null)
+                {
+                    oraRilevamento = new DateTime(1970, 1, 1, 0, 0, 0).AddMilliseconds(double.Parse(value)).ToLocalTime();
+                }
+            }
+        }
         public List<Fermata> Fermate { get; set; }
 
+
+       
         public DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch

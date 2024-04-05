@@ -11,8 +11,8 @@
     "serve": "vue-cli-service serve"
   },
   "dependencies": {
-    "@vue/compiler-sfc": "^3.4.21",
-    "vue": "^3.4.21"
+    "@vue/compiler-sfc": "^3.2.29",
+    "vue": "^3.2.26"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

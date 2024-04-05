@@ -12,22 +12,13 @@
 </script>
 
 <template>
-    <header>
-        <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-        <div class="wrapper">
-
+    <div id="app">
+        <div class="content">
             <input v-model="message" v-on:keyup.enter="updateHelloWorld" placeholder="edit me" />
             <button @click="updateHelloWorld">Submit</button>
-            <br />  
-            
+            <HelloWorld :msg="message" :key="helloWorldKey" />
         </div>
-    </header>
-
-    <main>
-        <HelloWorld :msg="message" :key="helloWorldKey" />
-        <!--<TheWelcome />-->
-    </main>
+    </div>
 </template>
 
 <style scoped>
@@ -39,7 +30,11 @@
         display: block;
         margin: 0 auto 2rem;
     }
-
+    #app {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+    }
     @media (min-width: 1024px) {
         header {
             display: flex;
@@ -56,5 +51,25 @@
             place-items: flex-start;
             flex-wrap: wrap;
         }
+    }
+    .sidebar {
+        width: 200px;
+        background-color: #333;
+        color: #fff;
+        margin:0 2rem 0 0;
+    }
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sidebar li {
+        padding: 10px;
+    }
+
+    .content {
+        flex: 1;
+        padding: 5px;
     }
 </style>
